@@ -43,6 +43,7 @@ print(type(a), type(b), type(c), type(res))
 # -6 % 4	0	        Der Rest ist 0, denn -6 = (4 x 0) + -6
 
 # 8.
+print("a b c")
 a = 10
 print(str(a) + " - -")
 b = 3
