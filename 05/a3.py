@@ -12,7 +12,9 @@ if produkte.count(wunsch) > 0:
         preise = [2.59, 2.79, 4.29, 5.99, 2.29]
         print("Das kostet", preise[wunschIndex])
     else:
-        jaNein = input("Wir haben leider nur", mengen[wunschIndex], wunsch, ". Soll ich die fehlenden", mengen[wunschIndex] - wunschMenge, "für morgen bestellen?")
+        string = "Wir haben leider nur " + str(mengen[wunschIndex]) + " " + wunsch +\
+                 ". Soll ich die fehlenden " + str(wunschMenge - mengen[wunschIndex]) + " für morgen bestellen?"
+        input(string + "\n")
 else:
     print("Schade, wir haben leider keine", wunsch + ".")
 
