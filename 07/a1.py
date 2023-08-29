@@ -46,4 +46,11 @@ while num1 != num2:
     print(num1, num2)
 
 print("Alle möglichen Würfelkombinationen:\n")
-while num1 == 6 & num2 == 6:
+num1 = 0
+num2 = 1
+while num2 != 7:
+    while num1 != 6:
+        num1 += 1
+        print(num1, num2)
+    num2 += 1
+    num1 = 0
