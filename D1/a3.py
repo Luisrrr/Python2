@@ -9,9 +9,9 @@ while True:
 
     existsInTop100 = False
     existsInUniqpass = False
-    if topPasswords.count(password + "\n") != 0:
+    if password + "\n" in topPasswords:
         existsInTop100 = True
-    if uniqpassPasswords.count(password + "\n") != 0:
+    if password + "\n" in uniqpassPasswords:
         existsInUniqpass = True
 
     if existsInTop100 or existsInUniqpass:

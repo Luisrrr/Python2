@@ -1,4 +1,4 @@
-generators = [1, 1, 0, 0, 0, 0, 0, 0]
+generators = [0, 0, 0, 0, 0, 0, 0, 0]
 mults = [1, 1, 1, 1, 1, 1, 1, 1]
 number = 0
 

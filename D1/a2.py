@@ -8,7 +8,7 @@ while exitProgram == False: # Wie geht !bool?
     while loggedIn:
         print("1 - Merkzettel anzeigen")
         print("2 - Neue Zeile zum Merkzettel hinzufügen")
-        print("3 - Letzte Zeile vom Merkzettel entfernen")
+        print("3 - Eine Zeile vom Merkzettel entfernen")
         print("4 - Alle Zeilen vom Merkzettel entfernen")
         print("5 - Ausloggen")
         print("6 - Programm schließen")
@@ -30,10 +30,10 @@ while exitProgram == False: # Wie geht !bool?
             lines = file.readlines()
             file.close()
             file = open(filePath, "w")
-            c = 0
-            while c < len(lines) - 1:
-                file.write(lines[c])
-                c += 1
+            remove = int(input("Welche Zeile? ")) - 1
+            lines.pop(remove)
+            for line in lines:
+                file.write(line)
             file.close()
         elif action == "4":
             file = open(filePath, "w")
