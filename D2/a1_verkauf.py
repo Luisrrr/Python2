@@ -1,17 +1,14 @@
-def GetFromCSV(line):
-    strs = []
-    str = ""
-    strs.append()
-    strs.append(str)
-    return strs
+def get_lists_from_file():
+    file = open("hofladen.csv", "r")
+    for line in file.readlines():
+        splits = line.split(",")
+        produkte.append(splits[0])
+        mengen.append(splits[1][:-1])
 
-
-file = open("hofladen.csv", "r")
-lines = file.readlines()
 
 produkte = []
-for line in lines:
-    produkte.append(line.strip().split("t"))
+mengen = []
+get_lists_from_file()
 
-print(lines[0])
-print(GetFromCSV(lines[0]))
+print(produkte)
+print(mengen)
