@@ -40,42 +40,34 @@ def add_suffix(num, alwaysShowDecimals = True):
 
 
 suffixes = ["", "K", "M", "B", "T", "Qa", "Qt", "Sx", "Sp", "Oc", "No"]
+print(format(1000))
+print(format(10000000, False))
+print(format(100000000))
+print(format(1000000000))
+print(format(2.3314e35))
+print(format(2e203, False))
+print(format(2e203, True))
 
-generators = [0, 0, 0, 0, 0, 0, 0, 0]
-mults = [1, 1, 1, 1, 1, 1, 1, 1]
-number = 10
-
-while True:
-    generatorStrs = []
-    multStrs = []
-    for c in range(0, 7):
-        generators[c] += generators[c + 1] * mults[c + 1]
-
-        generatorStrs.append(format(generators[c]))
-        multStrs.append(format(mults[c]))
-
-    generatorStrs.append(format(generators[7]))
-    multStrs.append(format(mults[7]))
-
-    lastNumber = number
-    number += generators[0] * mults[0]
-
-    percentageGain = round(((number - lastNumber) + 1) / number * 100)
-    print()
-    print("Number:", format(number), "(+" + str(percentageGain) + "%)")
-    print("Generators:", generatorStrs)
-    print("Multipliers:", multStrs)
-
-    print()
-    print("(1) Increase generator")
-    print("(2) Increase multiplier")
-
-    action = input("Enter for next tick\n")
-    if action == "1":
-        index = int(input("Generator index: "))
-        amount = float(input("Amount: "))
-        generators[index] += amount
-    elif action == "2":
-        index = int(input("Multiplier index: "))
-        amount = float(input("Amount: "))
-        mults[index] += amount
+# static string AddSuffix(BigDouble num, string[] suffixes, bool alwaysShowDecimals = true)
+#         {
+#             if (num == 0)
+#             {
+#                 return alwaysShowDecimals ? "0.00" : "0";
+#             }
+#             if (num.Exponent <= 0)
+#             {
+#                 return num.ToString("F2");
+#             }
+#
+#             double exponent = (double)num.Exponent;
+#             int suffixIndex = (int)Math.Floor(exponent / 3);
+#
+#             string mantissa = (num / BigDouble.Pow(1000, suffixIndex)).ToString("F2");
+#             if (!alwaysShowDecimals && mantissa.Contains(".00"))
+#             {
+#                 mantissa = mantissa.Split('.')[0];
+#             }
+#
+#             string suffix = suffixes[suffixIndex];
+#             return (suffix != "") ? mantissa + " " + suffix : mantissa;
+#         }
