@@ -47,6 +47,8 @@ print(format(1000000000))
 print(format(2.3314e35))
 print(format(2e203, False))
 print(format(2e203, True))
+print(format(2.12e203, False))
+print(format(2.12e203, True))
 
 # static string AddSuffix(BigDouble num, string[] suffixes, bool alwaysShowDecimals = true)
 #         {
