@@ -9,7 +9,7 @@ class Ball:
     y_vel = 0
     mass = 1
     bounciness = 0.6
-    friction = 1
+    friction = 1.2
     char = "O"
 
     def __init__(self):
@@ -44,7 +44,6 @@ class Ball:
             self.y_vel = -1 * math.fabs(self.y_vel) * self.bounciness
             if self.y_vel > -gravity * 15:
                 self.y_vel = 0
-                self.x_vel = 0
             self.x_vel /= self.friction
         elif self.y_pos < 0:
             # Ball hit ceiling
@@ -63,7 +62,7 @@ def draw_window():
 
 
 window_width = 35
-window_height = 7
+window_height = 8
 gravity = 0.01
 balls = []
 ball_count = 5
