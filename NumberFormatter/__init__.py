@@ -13,6 +13,7 @@ def format(num, always_show_decimals = True, notation = "MixedScientific"):
         return format_time(num)
 
 
+# 603000012.345 -> 19y 39d 10h 12s
 def format_time(num):
     seconds = math.floor(num)
     years = math.floor(seconds / (365.25 * 24 * 3600))
@@ -42,6 +43,7 @@ def format_time(num):
     return formatted_time
 
 
+# 1,000,000 -> 1.00e6
 def format_scientific(num, always_show_decimals = True):
     if always_show_decimals:
         return "{:.2E}".format(num).replace("E+", "e")
@@ -49,6 +51,7 @@ def format_scientific(num, always_show_decimals = True):
         return "{:.2E}".format(num).replace("E+", "e").replace(".00", "")
 
 
+# 1,000 -> 1.00 {suffix[1]}
 def add_suffix(num, always_show_decimals = True):
     if num == 0:
         return "0.00" if always_show_decimals else "0"
@@ -73,6 +76,7 @@ def add_suffix(num, always_show_decimals = True):
 
 suffixes = ["", "K", "M", "B", "T", "Qa", "Qt", "Sx", "Sp", "Oc", "No"]
 
+print(format(450))
 print(format(1000))
 print(format(10000000, False))
 print(format(100000000))
