@@ -11,10 +11,12 @@ class Ball:
     bounciness = 0.6
     friction = 1.2
     char = "O"
+    respawn = False  # Respawns when it is almost static
 
-    def __init__(self):
+    def __init__(self, _respawn = False):
         self.x_vel = random.random() * 6 - 3
         self.y_vel = random.random() * 6 - 3
+        self.respawn = _respawn
 
     def apply_force(self, force_x, force_y):
         self.x_vel = force_x * (1 / self.mass)
@@ -44,6 +46,8 @@ class Ball:
             self.y_vel = -1 * math.fabs(self.y_vel) * self.bounciness
             if self.y_vel > -gravity * 15:
                 self.y_vel = 0
+                if self.respawn and math.fabs(self.x_vel) < 0.2:
+                    self.__init__()
             self.x_vel /= self.friction
         elif self.y_pos < 0:
             # Ball hit ceiling
@@ -66,13 +70,21 @@ window_height = 8
 gravity = 0.01
 balls = []
 ball_count = 5
-for x in range(ball_count):
-    balls.append(Ball())
+spawn_interval = 0  # In frames
+for c in range(ball_count):
+    balls.append(Ball(False))
 
+frame_counter = 0
 while True:
     window = [[" " for x in range(window_width)] for y in range(window_height)]  # Resets window
     for ball in balls:
         ball.simulate()
     draw_window()
 
-    input("Enter for next tick")
+    if spawn_interval != 0:
+        frame_counter += 1
+        if frame_counter >= spawn_interval:
+            frame_counter = 0
+            balls.append(Ball())
+    if input("Enter for next tick") == "x":
+        break
