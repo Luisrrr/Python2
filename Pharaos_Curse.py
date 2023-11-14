@@ -1,5 +1,3 @@
-import math
-
 
 class Particle:
     x_pos = 0
@@ -26,6 +24,7 @@ class Particle:
         for move in self.moves:
             if self.move(self.x_steps[move - 1], self.y_steps[move - 1]):
                 break
+        window[self.y_pos][self.x_pos] = self.char
 
     def move(self, x, y):
         if window[self.y_pos + y][self.x_pos + x] != " " or self.is_out_of_bounds(self.x_pos + x, self.y_pos + y):
@@ -38,7 +37,8 @@ class Particle:
         window[self.y_pos][self.x_pos] = self.char
         return True
 
-    def is_out_of_bounds(self, x, y):
+    @staticmethod
+    def is_out_of_bounds(x, y):
         return x < 0 or x >= window_width - 1 or y < 0 or y >= window_height - 1
 
 
@@ -61,6 +61,7 @@ window = [[" " for x in range(window_width)] for y in range(window_height)]  # R
 cursor_x = int(window_width / 2)
 cursor_y = int(window_height / 2)
 tick_speed = 5  # x frames between the ticks
+toggled_place = False
 
 particles = []
 current_particle = "#"
@@ -69,7 +70,8 @@ while True:
         particle.simulate()
     draw_window()
 
-    action = input("Enter: Next tick | M: Move cursor | P: Place | S: Switch particle ").upper()
+    action = input("Enter: Next tick | WASD/M: Move cursor | P/T(toggle): Place(" + current_particle + ") "
+            "| C: Switch particle").upper()
     if action == "M":
         move_by = input("x y: ")
         splits = move_by.split(" ")
@@ -77,6 +79,21 @@ while True:
         cursor_y += int(splits[1])
     elif action == "P":
         particles.append(Particle(current_particle))
-    elif action == "S":
+    elif action == "T":
+        toggled_place = False if toggled_place else True
+    elif action == "C":
         selection = input("Sand: #  Water: O  Wall: =")
         current_particle = selection
+    elif action == "W":
+        cursor_y -= 1
+    elif action == "S":
+        cursor_y += 1
+    elif action == "A":
+        cursor_x -= 1
+    elif action == "D":
+        cursor_x += 1
+    elif action == "X":
+        break
+
+    if toggled_place:
+        particles.append(Particle(current_particle))
